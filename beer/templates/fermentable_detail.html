@@ -1,0 +1,18 @@
+
+{% block content %}
+<div class="container">
+  <h1>{{ object.name}}</h1>
+  <p><span class="badge badge-info">Description:</span> {{ object.description }}</p>
+  {% if object.mash_required %}
+  <p><span class="badge badge-info">Mash Required?</span> Yes</p>
+  {% else %}
+  <p><span class="badge badge-info">Mash Required?</span> No</p>
+  {% endif %}
+  <hr>
+  <p><span class="badge badge-info">Color</span> {{ object.color }}</p>
+  <p><span class="badge badge-info">Extract</span> {{ object.extract }}</p>
+  <p><span class="badge badge-info">Moisture</span> {{ object.moisture }}</p>
+  <hr>
+  <p><a href="{% url 'inventory_fermentable_list' %}">Go Back To list</a></p>
+</div>
+{% endblock %}

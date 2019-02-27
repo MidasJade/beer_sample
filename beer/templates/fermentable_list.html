@@ -1,0 +1,56 @@
+
+{% block content %}
+  <h1>Fermentables</h1>
+  <div class="container">
+    <span style="float:right">
+      <p><a href="{% url 'inventory_fermentable_create' %}"><button type="button" class="btn btn-primary active">Create Ingredient</button></a></p>
+    </span>
+  </div>
+
+{% if filter %}
+<div class="container">
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Fermentable</th>
+          <th>Quantity</th>
+          <th>Mash Required</th>
+          <th>Color</th>
+          <th>Extract</th>
+          <th>Moisture</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for fermentable in filter %}
+        <tr>
+          <td><a href="{% url 'inventory_fermentable_detail' fermentable.id %}">{{ fermentable.name }}</a></td>
+          <td>{{ fermentable.quantity }}</td>
+          <td align="center"><span>
+            {% if fermentable.mash_required %}
+              <i class="fa fa-check" style="color:green"></i>
+            {% else %}
+              <i class="fa fa-times" style="color:red"></i>
+            {% endif %}</span>
+          </td>
+          <td>{{ fermentable.color|floatformat:2 }}</td>
+          <td>{{ fermentable.extract }}</td>
+          <td>{{ fermentable.moisture }}</td>
+          <td>
+            <a href="{% url 'inventory_fermentable_update' fermentable.id %}">
+              Update
+            </a>
+          </td>
+          <td>
+
+          </td>
+
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table></div>
+{% else %}
+<p>There are no fermentables in the system yet.</p>
+{% endif %}
+{% endblock %}

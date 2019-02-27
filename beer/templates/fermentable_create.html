@@ -1,0 +1,8 @@
+
+{% block content %}
+    <a href="{% url 'inventory_fermentable_list' %}">Go Back To list</a>
+    <form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-info">Create</button>
+    </form>
+{% endblock %}
